@@ -20,7 +20,7 @@ class Fixed
 
 public:
 	int		getRawBits() const;
-	void	setRawBits(int const raw);
+	void	setRawBits(int raw);
 
 	Fixed();
 	~Fixed();

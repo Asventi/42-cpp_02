@@ -12,6 +12,7 @@
 
 #include "Fixed.hpp"
 
+#include <cmath>
 #include <iostream>
 
 const int	Fixed::_bits = 8;
@@ -30,16 +31,29 @@ void Fixed::setRawBits(int const raw)
 
 Fixed::Fixed(const int n)
 {
+	_value = n << 8;
+	if (n < 0)
+		_value |= 1 << 31;
+	else
+		_value &= ~(1 << 31);
+}
+
+Fixed::Fixed(const float f)
+{
+	int		n = static_cast<int>(f);
+
 	if (n > 0)
 	{
-		if ((n >> 32 - _bits) != 0)
-		{
-			std::cout << "[ Warning ] Initial integer is too big, it will lose accuracy\n";
-		}
+		if ((n >> (32 - (_bits  + 1))) != 0)
+			std::cerr << "[ Warning ] Initial integer part is too big, it will lose accuracy\n";
 	}
-	else if (~(n >> 32 - _bits) != 0)
-		std::cout << "[ Warning ] Initial integer is too big, it will lose accuracy\n";
-	_value = n << 8;
+	else if (~(n >> (32 - (_bits + 1))) != 0)
+		std::cerr << "[ Warning ] Initial integer part is too big, it will lose accuracy\n";
+	_value = n << _bits;
+	if (n < 0)
+		_value |= 1 << 31;
+	else
+		_value &= ~(1 << 31);
 }
 
 Fixed::Fixed(): _value(0)

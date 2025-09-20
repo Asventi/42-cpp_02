@@ -17,8 +17,8 @@
 
 int	main()
 {
-	Fixed	a(-42);
-	int		n2 = (a.getRawBits() >> 8) & (UINT_MAX >> 8);
+	Fixed	a(42);
+	int		n2 = (a.getRawBits() >> 8);
 
 	std::cout << n2 << '\n';
 }

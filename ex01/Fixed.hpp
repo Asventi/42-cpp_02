@@ -22,7 +22,8 @@ public:
 	int		getRawBits() const;
 	void	setRawBits(int const raw);
 
-	Fixed(const int n);
+	Fixed(int n);
+	Fixed(float n);
 	Fixed();
 	~Fixed();
 	Fixed(const Fixed &cpy);
