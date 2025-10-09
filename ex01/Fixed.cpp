@@ -29,31 +29,25 @@ void Fixed::setRawBits(int const raw)
 	_value = raw;
 }
 
+float	Fixed::toFloat() const
+{
+	return (_value / 256.0f);
+}
+
+int Fixed::toInt() const
+{
+	return (_value / 256);
+}
+
+
 Fixed::Fixed(const int n)
 {
-	_value = n << 8;
-	if (n < 0)
-		_value |= 1 << 31;
-	else
-		_value &= ~(1 << 31);
+	_value = n << _bits;
 }
 
 Fixed::Fixed(const float f)
 {
-	int		n = static_cast<int>(f);
-
-	if (n > 0)
-	{
-		if ((n >> (32 - (_bits  + 1))) != 0)
-			std::cerr << "[ Warning ] Initial integer part is too big, it will lose accuracy\n";
-	}
-	else if (~(n >> (32 - (_bits + 1))) != 0)
-		std::cerr << "[ Warning ] Initial integer part is too big, it will lose accuracy\n";
-	_value = n << _bits;
-	if (n < 0)
-		_value |= 1 << 31;
-	else
-		_value &= ~(1 << 31);
+	_value = f * pow(2, _bits);
 }
 
 Fixed::Fixed(): _value(0)

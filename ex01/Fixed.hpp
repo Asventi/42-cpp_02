@@ -20,7 +20,9 @@ class Fixed
 
 public:
 	int		getRawBits() const;
-	void	setRawBits(int const raw);
+	void	setRawBits(int raw);
+	float	toFloat() const;
+	int		toInt() const;
 
 	Fixed(int n);
 	Fixed(float n);

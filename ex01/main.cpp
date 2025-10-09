@@ -17,8 +17,10 @@
 
 int	main()
 {
-	Fixed	a(42);
-	int		n2 = (a.getRawBits() >> 8);
+	float	initial = -42.576;
+	Fixed	a(initial);
 
-	std::cout << n2 << '\n';
+	std::cout << "Number initiated with: " << initial << '\n';
+	std::cout << "Raw bits: " << a.getRawBits() << "\n\n";
+	std::cout << "To float: " << a.toFloat() << "\tTo int: " << a.toInt() << '\n';
 }
