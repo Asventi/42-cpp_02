@@ -10,25 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "Point.hpp"
 
-#include <iostream>
-#include <climits>
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest.h"
 
-int	main()
+bool	bsp(const Point a, const Point b, const Point c, const Point p);
+
+TEST_CASE("Classic triangle")
 {
-	Fixed a;
-	Fixed const b( 10 );
-	Fixed const c( 42.42f );
-	Fixed const d( b );
+	CHECK(bsp(Point(0, 0), Point(1, 0), Point(0.5f, 1), Point(0.5f, 0.5f)) == true);
+	CHECK(bsp(Point(0, 0), Point(1, 0), Point(-0.5f, 1), Point(0.5f, 0.5f)) == false);
+	CHECK(bsp(Point(0, 0), Point(1, 0), Point(0, 1), Point(0.5f, 0.5f)) == false);
+}
 
-	a = Fixed( 1234.4321f );
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+TEST_CASE("Flat triangle")
+{
+	CHECK(bsp(Point(0, 0), Point(1, 0), Point(0.5f, 0), Point(0.5f, 0)) == false);
+	CHECK(bsp(Point(0, 0), Point(1, 0), Point(0.5f, 0), Point(0, 0)) == false);
 }

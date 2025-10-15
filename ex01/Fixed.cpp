@@ -17,36 +17,15 @@
 
 const int	Fixed::_bits = 8;
 
-int Fixed::getRawBits() const
-{
-	std::cout << "getRawBits member function called\n";
-	return _value;
-}
-
-void Fixed::setRawBits(int const raw)
-{
-	std::cout << "setRawBits member function called\n";
-	_value = raw;
-}
-
-float	Fixed::toFloat() const
-{
-	return (_value / 256.0f);
-}
-
-int Fixed::toInt() const
-{
-	return (_value / 256);
-}
-
-
 Fixed::Fixed(const int n)
 {
+	std::cout << "Int constructor called\n";
 	_value = n << _bits;
 }
 
 Fixed::Fixed(const float f)
 {
+	std::cout << "Float constructor called\n";
 	_value = f * pow(2, _bits);
 }
 
@@ -75,6 +54,33 @@ Fixed::~Fixed()
 {
 	std::cout << "Destructor called\n";
 }
+
+int Fixed::getRawBits() const
+{
+	return _value;
+}
+
+void Fixed::setRawBits(int const raw)
+{
+	_value = raw;
+}
+
+float	Fixed::toFloat() const
+{
+	return (_value / 256.0f);
+}
+
+int Fixed::toInt() const
+{
+	return (_value / 256);
+}
+
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
+{
+	os << fixed.toFloat();
+	return (os);
+}
+
 
 
 

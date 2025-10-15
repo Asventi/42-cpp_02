@@ -26,6 +26,29 @@ public:
 	float	toFloat() const;
 	int		toInt() const;
 
+	bool	operator<(const Fixed& fix) const;
+	bool	operator>(const Fixed& fix) const;
+	bool	operator>=(const Fixed& fix) const;
+	bool	operator<=(const Fixed& fix) const;
+
+	bool	operator==(const Fixed& fix) const;
+	bool	operator!=(const Fixed& fix) const;
+
+	Fixed	&operator++();
+	Fixed	operator++(int);
+	Fixed	&operator--();
+	Fixed	operator--(int);
+
+	Fixed	operator+(const Fixed &r) const;
+	Fixed	operator-(const Fixed &r) const;
+	Fixed	operator/(const Fixed &r) const;
+	Fixed	operator*(const Fixed &r) const;
+
+	static Fixed		&min(Fixed &l, Fixed &r);
+	static const Fixed	&min(const Fixed &l, const Fixed &r);
+	static Fixed		&max(Fixed &l, Fixed &r);
+	static const Fixed	&max(const Fixed &l, const Fixed &r);
+
 	explicit Fixed(int n);
 	explicit Fixed(float f);
 	Fixed();

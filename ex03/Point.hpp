@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 16:36:41 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/04/30 16:36:41 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/10/15 15:32:17 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/10/15 15:32:17 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_H
-# define FIXED_H
+#ifndef POINT_HPP
+# define POINT_HPP
 
-#include <iostream>
+# include "Fixed.hpp"
 
-class Fixed
+class Point
 {
-	static const int	_bits;
-	int					_value;
+private:
+	const Fixed	_x;
+	const Fixed	_y;
 
 public:
-	int		getRawBits() const;
-	void	setRawBits(int raw);
-	float	toFloat() const;
-	int		toInt() const;
+	Fixed x() const;
+	Fixed y() const;
 
-	explicit Fixed(int n);
-	explicit Fixed(float f);
-	Fixed();
-	~Fixed();
-	Fixed(const Fixed &cpy);
-	Fixed &operator=(const Fixed &e);
+	Point();
+	Point(float x, float y);
+	~Point();
+	Point(const Point &pt);
+	Point	&operator=(const Point &);
 };
-
-std::ostream &operator<<(std::ostream &os, const Fixed& fix);
 
 #endif
